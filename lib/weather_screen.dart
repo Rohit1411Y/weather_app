@@ -4,6 +4,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'additional_info_item.dart';
+import 'forecast_per_hour.dart';
+
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
 
@@ -25,6 +28,7 @@ class WeatherScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
           
@@ -46,7 +50,7 @@ class WeatherScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(children: const[
-                   Text("450°F",style:
+                   Text("91.4°F",style:
                     TextStyle(fontSize: 32,
                     fontWeight: FontWeight.bold),
                     ),
@@ -72,49 +76,36 @@ class WeatherScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
            child: Row(
             children: const [
-            ForecastPerHour(),
-            ForecastPerHour(),
-            ForecastPerHour(),
-            ForecastPerHour(),
-            ForecastPerHour()
+            ForecastPerHour(time: "0:00",iconData: Icons.dark_mode_rounded,temperature: "75.2",),
+            ForecastPerHour(time: "3:00",iconData: Icons.dark_mode_rounded,temperature: "71.6",),
+            ForecastPerHour(time: "6:00",iconData: Icons.light_mode,temperature: "77.5",),
+            ForecastPerHour(time: "9:00",iconData: Icons.cloud,temperature: "69.8",),
+            ForecastPerHour(time: "12:00",iconData: Icons.sunny,temperature: "82.4",)
              
             ],
            ),
          ),
          
        const SizedBox(height: 10,),
-       const Placeholder(fallbackHeight: 150,),
+       const Text("Additional Information",
+       style: TextStyle(
+        fontSize: 24
+       ,fontWeight: FontWeight.bold),
+       ),
+       const SizedBox(height: 10,),
+       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: const [
+          AdditionalInfoItem(icon: Icons.water_drop,label: "Humidity",value: "64"),
+          AdditionalInfoItem(icon: Icons.air,label: "Wind Speed",value: "6.45"),
+          AdditionalInfoItem(icon: Icons.beach_access,label: "Pressure",value: "1006")
+         
+
+        ],
+       )
         ]),
       ),
     );
   }
 }
-class ForecastPerHour extends StatelessWidget {
-  const ForecastPerHour({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return  SizedBox(
-                width: 100,
-                child: Card(
-                  elevation: 7,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                      children: const [
-                        Text('6:00',
-                        style: TextStyle(fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                        ),
-                        Icon(Icons.cloud,
-                        size: 32,),
-                        SizedBox(height: 8,),
-                        Text("421.14"),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-  }
-}
