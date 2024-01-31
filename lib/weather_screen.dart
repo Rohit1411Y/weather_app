@@ -164,7 +164,7 @@ double temp = 0;
          const SizedBox(height: 10,),
          const Text("Additional Information",
          style: TextStyle(
-          fontSize: 24
+          fontSize: 23
          ,fontWeight: FontWeight.bold),
          ),
          const SizedBox(height: 10,),
