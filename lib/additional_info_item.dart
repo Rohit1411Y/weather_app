@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class AdditionalInfoItem extends StatelessWidget {
@@ -25,7 +27,7 @@ class AdditionalInfoItem extends StatelessWidget {
         ),)
 
 
-
+  
       ],
     );
   }
