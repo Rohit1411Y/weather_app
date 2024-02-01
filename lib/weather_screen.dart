@@ -1,5 +1,5 @@
 
-
+import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'dart:ui';
 
@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'additional_info_item.dart';
 import 'forecast_per_hour.dart';
 import 'package:http/http.dart' as http;
+
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
   
@@ -59,7 +60,11 @@ double temp = 0;
         ),
         centerTitle: true,
         actions:  [
-        IconButton(onPressed: (){}, icon: const Icon(Icons.refresh))
+        IconButton(onPressed: (){
+          setState(() {
+            
+          });
+        }, icon: const Icon(Icons.refresh))
         ],
         
       ),
@@ -154,8 +159,8 @@ double temp = 0;
               scrollDirection: Axis.horizontal,
               itemCount: data['list'].length,
               itemBuilder:(context, i) {
-              
-              return  ForecastPerHour(time:data['list'][i]['dt_txt'].toString(),
+              final time = DateTime.parse(data['list'][i]['dt_txt']);
+              return  ForecastPerHour(time:DateFormat.j().format(time),
                iconData:data['list'][i]['weather'][0]['main']=='Clouds'? Icons.dark_mode_rounded:Icons.sunny,
                 temperature: data['list'][i]['main']['temp'].toString(),);
                }
